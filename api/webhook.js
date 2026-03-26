@@ -641,21 +641,24 @@ module.exports = async function handler(req, res) {
   // ─── POST: Incoming messages ───
   if (req.method === "POST") {
     const body = req.body;
-    res.status(200).send("OK");
 
     try {
       const entry = body?.entry?.[0];
       const changes = entry?.changes?.[0];
       const value = changes?.value;
 
-      if (!value?.messages?.[0]) return;
+      if (!value?.messages?.[0]) {
+        return res.status(200).send("OK");
+      }
 
       const message = value.messages[0];
       const from = message.from;
       const messageId = message.id;
 
       // Deduplicate
-      if (processedMessages.has(messageId)) return;
+      if (processedMessages.has(messageId)) {
+        return res.status(200).send("OK");
+      }
       processedMessages.add(messageId);
       if (processedMessages.size > 1000) {
         const arr = [...processedMessages];
@@ -664,7 +667,8 @@ module.exports = async function handler(req, res) {
         );
       }
 
-      await markAsRead(messageId);
+      // Mark as read (non-blocking, don't fail if it times out)
+      markAsRead(messageId).catch(() => {});
 
       // Only handle text messages
       if (message.type !== "text") {
@@ -678,35 +682,38 @@ module.exports = async function handler(req, res) {
           direction: "inbound",
           message: `[${message.type} message — not supported]`,
         });
-        return;
+        return res.status(200).send("OK");
       }
 
       const userText = message.text.body;
       console.log(`Message from ${from}: ${userText}`);
 
-      await logMessage({
+      // Log inbound (non-blocking)
+      logMessage({
         messageId,
         phoneNumber: from,
         direction: "inbound",
         message: userText,
-      });
+      }).catch(() => {});
 
       const reply = await generateResponse(from, userText);
       console.log(`Reply to ${from}: ${reply.slice(0, 100)}...`);
 
       await sendMessage(from, reply);
 
-      await logMessage({
+      // Log outbound (non-blocking)
+      logMessage({
         messageId: `reply-${messageId}`,
         phoneNumber: from,
         direction: "outbound",
         message: reply,
-      });
+      }).catch(() => {});
+
+      return res.status(200).send("OK");
     } catch (err) {
       console.error("Error processing message:", err);
+      return res.status(200).send("OK");
     }
-
-    return;
   }
 
   res.status(405).send("Method not allowed");
