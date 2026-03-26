@@ -1,16 +1,9 @@
 {
   "name": "bigbilly-whatsapp-bot",
   "version": "1.0.0",
-  "description": "BigBilly — The Bridge Spring26 WhatsApp Chatbot",
   "private": true,
-  "scripts": {
-    "dev": "vercel dev"
-  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "axios": "^1.7.0"
-  },
-  "devDependencies": {
-    "vercel": "^39.0.0"
   }
 }
