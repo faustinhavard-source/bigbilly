@@ -568,15 +568,17 @@ const SYSTEM_PROMPT = `You are Dolores, the official WhatsApp assistant for The 
 
 ## FORMATTING RULES (CRITICAL)
 You are writing for WhatsApp, NOT a website or email. Follow these rules strictly:
-- NEVER use Markdown syntax. No ** for bold, no ## for headers, no - for bullet points, no []() for links
-- WhatsApp bold: use single asterisks *like this*
-- WhatsApp italic: use underscores _like this_
-- WhatsApp strikethrough: use tildes ~like this~
-- WhatsApp monospace: use backticks \`like this\`
-- For lists, just use line breaks and simple dashes or numbers, no fancy formatting
-- For links, just paste the raw URL — no markdown link syntax
-- Keep messages clean and readable, avoid walls of text
-- Use line breaks to separate ideas, not headers
+- NEVER use Markdown syntax. No ** for bold, no ## for headers, no []() for links
+- NEVER use *asterisks* for bold or emphasis. No bold at all. Keep everything plain text
+- NEVER use _underscores_ for italic either. Just write naturally
+- For links, just paste the raw URL on its own line — no markdown link syntax
+- Use arrow → to introduce items or steps (e.g. "→ Fill out this form")
+- Use bullet points with simple "•" character, not dashes
+- Use line breaks generously to keep things scannable
+- Keep messages short and punchy — aim for 3-5 lines max per topic
+- For multi-step instructions, use numbered lines (1. 2. 3.) with line breaks between
+- Separate sections with a blank line, never with headers or dividers
+- OK to use emojis as visual anchors (📅 for dates, ✈️ for flights, 🏠 for housing, etc.) but don't overdo it
 
 ## Response Rules
 
@@ -586,7 +588,8 @@ You are writing for WhatsApp, NOT a website or email. Follow these rules strictl
 - Be specific with dates, amounts, and deadlines
 - If a question has a clear answer, give it immediately — don't pad
 - For multi-part questions, use numbered responses
-- Proactively mention related deadlines if relevant
+- Proactively mention related deadlines if relevant — especially if something is due soon or already past
+- If today's date is past a deadline, tell the founder it's passed and what to do (e.g. "that deadline was March 31 — reach out to the team to check if you can still submit")
 
 ### DON'T:
 - Make up information not in the knowledge base
@@ -628,6 +631,31 @@ function addToHistory(phoneNumber, role, content) {
   conversationCache.set(phoneNumber, history);
 }
 
+function getDateContext() {
+  const now = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Los_Angeles' };
+  const today = now.toLocaleDateString('en-US', options);
+
+  // Key program dates for deadline awareness
+  const deadlines = [
+    { date: new Date('2026-03-31'), label: 'Pre-Bridge Checklist deadline' },
+    { date: new Date('2026-03-31'), label: 'AMA with Alice Bentinck' },
+    { date: new Date('2026-04-02'), label: 'US Immigration Talk with Monica' },
+    { date: new Date('2026-04-10'), label: 'Arrivals in SF begin' },
+    { date: new Date('2026-04-13'), label: 'Kick-off Day (KOD)' },
+  ];
+
+  const upcoming = deadlines
+    .filter(d => d.date >= now)
+    .map(d => {
+      const diff = Math.ceil((d.date - now) / (1000 * 60 * 60 * 24));
+      return `→ ${d.label}: ${diff === 0 ? 'TODAY' : diff === 1 ? 'TOMORROW' : `in ${diff} days`}`;
+    })
+    .join('\n');
+
+  return `\n## TODAY'S DATE\n${today} (SF timezone: America/Los_Angeles)\n\nUpcoming deadlines:\n${upcoming}\n\nUse this context to create urgency when relevant. If a deadline is today or tomorrow, proactively warn the founder. If something has already passed, let them know and tell them what to do next.`;
+}
+
 async function generateResponse(phoneNumber, userMessage) {
   addToHistory(phoneNumber, "user", userMessage);
   const messages = getHistory(phoneNumber);
@@ -635,7 +663,7 @@ async function generateResponse(phoneNumber, userMessage) {
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 1024,
-    system: SYSTEM_PROMPT,
+    system: SYSTEM_PROMPT + getDateContext(),
     messages,
   });
 
