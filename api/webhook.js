@@ -182,7 +182,7 @@ async function getKnowledgeBase() {
 // Minimal fallback KB in case Notion is unreachable
 const FALLBACK_KB = `The Bridge Spring26 is an 8-week residency in San Francisco for non-US founders.
 Arrivals: April 10-12. Kick-off: April 13.
-For questions, contact spring26-thebridge@joinef.com or ask on Slack #spring26-the-bridge.`;
+For questions, contact operations-thebridge@joinef.com or ask on Slack #spring26-the-bridge.`;
 
 // ═══════════════════════════════════════════════════════════
 // SYSTEM PROMPT
