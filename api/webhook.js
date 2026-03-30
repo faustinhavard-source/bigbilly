@@ -1,195 +1,545 @@
 // Dolores — Single-file serverless function for Vercel
-// Fetches knowledge base from Notion in real-time
+// Knowledge base generated from Notion on 2026-03-30
 
 const Anthropic = require("@anthropic-ai/sdk");
 const axios = require("axios");
 
 // ═══════════════════════════════════════════════════════════
-// NOTION — fetch knowledge base from Notion pages
+// KNOWLEDGE BASE (generated from Notion — last sync: 2026-03-30)
 // ═══════════════════════════════════════════════════════════
 
-const NOTION_API = "https://api.notion.com/v1";
-const NOTION_VERSION = "2022-06-28";
+const KNOWLEDGE_BASE = `
+# The Bridge Spring26 — Knowledge Base
+Last updated: March 30, 2026
 
-// Key Notion pages to fetch
-const NOTION_PAGES = [
-  { id: "325e26adb8c980478b9fd89e951c3baf", label: "Wiki" },
-  { id: "325e26adb8c980bf95d9c334774c80c6", label: "Internal FAQ" },
-  { id: "2fce26adb8c980b4b248d3c8a0de8185", label: "Reimbursement" },
-];
+---
 
-// Simple cache — survives within a single Vercel instance (warm starts)
-let cachedKB = null;
-let cacheTimestamp = 0;
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+## 1. WHAT IS THE BRIDGE?
 
-// Extract plain text from Notion rich_text array
-function extractRichText(richTextArr) {
-  if (!richTextArr || !Array.isArray(richTextArr)) return "";
-  return richTextArr.map((rt) => rt.plain_text || "").join("");
-}
+The Bridge is a program based fully in San Francisco for exceptional non-US founders at Stage 0 (pre-idea or pre-team).
 
-// Extract text content from a single Notion block
-function extractBlockText(block) {
-  const type = block.type;
-  if (!block[type]) return "";
+It's an 8-week intensive residency designed for ~40 young engineers/builders ready to build their own company — their bridge to the US and Silicon Valley.
 
-  const richText = block[type].rich_text;
-  const text = extractRichText(richText);
+### Two phases:
 
-  switch (type) {
-    case "heading_1":
-      return `\n# ${text}\n`;
-    case "heading_2":
-      return `\n## ${text}\n`;
-    case "heading_3":
-      return `\n### ${text}\n`;
-    case "paragraph":
-      return text ? `${text}\n` : "";
-    case "bulleted_list_item":
-      return `- ${text}\n`;
-    case "numbered_list_item":
-      return `- ${text}\n`;
-    case "to_do":
-      const checked = block[type].checked ? "✅" : "☐";
-      return `${checked} ${text}\n`;
-    case "toggle":
-      return text ? `${text}\n` : "";
-    case "callout":
-      return text ? `${text}\n` : "";
-    case "quote":
-      return text ? `> ${text}\n` : "";
-    case "divider":
-      return "---\n";
-    case "code":
-      return `\`${text}\`\n`;
-    case "table_row":
-      const cells = block[type].cells || [];
-      const row = cells.map((cell) => extractRichText(cell)).join(" | ");
-      return `| ${row} |\n`;
-    case "bookmark":
-      return block[type].url ? `${block[type].url}\n` : "";
-    case "embed":
-      return block[type].url ? `${block[type].url}\n` : "";
-    default:
-      return text ? `${text}\n` : "";
-  }
-}
+Phase 1 — FORM (8-week residency)
+- Live and build together in a shared founder house in SF
+- Meet potential co-founders
+- Explore ideas or refine early concepts
+- Talk to users, ship early products
+- Rapidly test markets and problem spaces
+- At the end, teams pitch to the Investment Committee
 
-// Recursively fetch all blocks from a Notion page
-async function fetchAllBlocks(blockId, token, depth = 0) {
-  if (depth > 3) return ""; // Max recursion depth
+Phase 2 — Company Building (3 months, funded teams only)
+- Teams that receive funding stay in SF for 3 more months
+- Build full-time from the San Francisco office
+- Hands-on support from the team
+- Prepare to raise next round
+- Culminates in Demo Day
 
-  let allText = "";
-  let cursor = undefined;
-  let hasMore = true;
+### Funding
+- Strongest teams receive $250,000 in pre-seed funding
+- $250k on simple terms:
+  - $125k for 8% equity via a SAFE
+  - Optional $125k MFN SAFE
+- Alumni have raised from: Sequoia, Founders Fund, a16z, Benchmark, Index
 
-  while (hasMore) {
-    try {
-      const url = `${NOTION_API}/blocks/${blockId}/children?page_size=100${
-        cursor ? `&start_cursor=${cursor}` : ""
-      }`;
-      const res = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
-          "Notion-Version": NOTION_VERSION,
-        },
-        timeout: 8000,
-      });
+---
 
-      const blocks = res.data.results || [];
+## 2. WHO IS IT FOR?
 
-      for (const block of blocks) {
-        allText += extractBlockText(block);
+The Bridge is for Stage 0 founders — people who may arrive pre-idea, pre-team, or with early ideas.
 
-        // Recurse into blocks with children (toggles, callouts, etc.)
-        if (block.has_children) {
-          const childText = await fetchAllBlocks(block.id, token, depth + 1);
-          allText += childText;
-        }
-      }
+Profiles we look for:
 
-      hasMore = res.data.has_more;
-      cursor = res.data.next_cursor;
-    } catch (err) {
-      console.error(`Notion fetch error for ${blockId}:`, err.message);
-      hasMore = false;
-    }
-  }
+Builders: Engineers, researchers, hackers, product builders
+Future CEOs: Commercial operators, growth leaders, sales/distribution experts
 
-  return allText;
-}
+- Typically based outside the United States
+- Not limited to CS or AI — support across software, AI, robotics, deep tech, and other domains
+- Also support founders strong in growth, distribution, and sales
+- Very competitive: only ~40 founders per cohort
 
-// Fetch a single Notion page (title + content)
-async function fetchNotionPage(pageId, label) {
-  try {
-    // Get page title
-    const pageRes = await axios.get(`${NOTION_API}/pages/${pageId}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
-        "Notion-Version": NOTION_VERSION,
-      },
-      timeout: 5000,
-    });
+---
 
-    const titleProp = pageRes.data.properties?.title?.title;
-    const title = titleProp ? extractRichText(titleProp) : label;
+## 3. SPRING26 KEY DATES & TIMELINE
 
-    // Get page content
-    const content = await fetchAllBlocks(pageId, process.env.NOTION_TOKEN);
+Before March 31 — Complete Pre-Bridge Checklist (founder profile, flight info, calendar)
+March 31 — AMA with Alice Bentinck (CEO) — 6:30pm CEST / 4:30pm GMT / 9:30am PDT — Call link: https://meet.google.com/pjj-tvxz-hhy
+April 2 — US Immigration Talk & Q&A with Monica — 4:00pm CEST / 2:00pm GMT / 7:00am PDT — Call link: https://meet.google.com/vvw-dfkv-azq
+April 10-12 — Arrivals in San Francisco
+April 13 — Kick-off Day (KOD)
+Week 1-2 — Exploration and co-founder matching
+Week 3-4 — Early idea validation and user conversations
+Week 5-6 — Product iteration and deeper market exploration
+Week 7 — Preparing for Investment Committee
+Week 8 — Investment Committee pitches
 
-    return `\n# ${title}\n${content}`;
-  } catch (err) {
-    console.error(`Failed to fetch Notion page ${label}:`, err.message);
-    return `\n# ${label}\n(Could not fetch this page)\n`;
-  }
-}
+---
 
-// Fetch all Notion pages and assemble knowledge base
-async function getKnowledgeBase() {
-  const now = Date.now();
+## 4. PRE-BRIDGE CHECKLIST
 
-  // Return cache if fresh
-  if (cachedKB && now - cacheTimestamp < CACHE_TTL) {
-    console.log("Using cached knowledge base");
-    return cachedKB;
-  }
+### Before March 31st:
+1. Founder Profile — Complete at: https://airtable.com/appQQph3BFJyL9teo/pagc8eb86mMx9RluS/form
+2. Flight Information — Fill out at: https://airtable.com/appHQ6zqny4qVWgOZ/pagGbhY5LsAM7YklM/form (deadline: Friday March 27th 6PM — if not booked by then, considered not joining)
+3. Add Calendar — https://calendar.google.com/calendar/u/0?cid=Y181MmFhMTkxNzVjMGU3OGQ5OTk5MTU1OGQzZjZhZTA3MmUzNjQ3NjRkYzlmZjNlNDk5NGMyY2NjNjVlZjY4NDQ3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20
 
-  console.log("Fetching knowledge base from Notion...");
+### After March 31st:
+1. Founder Dashboard — Review cohort dashboard and teams dashboard
+2. Slack — Download Slack, turn on notifications for:
+   - #spring26-the-bridge (general comms)
+   - #spring26-the-bridge-announcements (announcements)
+   - #spring26-the-bridge-team-formations (team updates)
+3. WhatsApp Group — Link coming soon
+4. Prepare for The Bridge:
+   - Review the recommended reading content
+   - Check out who you'll be working with (partners database)
+   - Explore the SF ecosystem page
+   - Review KOD preparation materials
 
-  if (!process.env.NOTION_TOKEN) {
-    console.warn("NOTION_TOKEN not set — using fallback");
-    return FALLBACK_KB;
-  }
+---
 
-  try {
-    // Fetch all pages in parallel
-    const pages = await Promise.all(
-      NOTION_PAGES.map((p) => fetchNotionPage(p.id, p.label))
-    );
+## 5. FLIGHTS & TRAVEL
 
-    const kb = pages.join("\n---\n");
-    cachedKB = kb;
-    cacheTimestamp = now;
-    return kb;
-  } catch (err) {
-    console.error("Failed to fetch Notion KB:", err.message);
-    // Return stale cache if available, otherwise fallback
-    return cachedKB || FALLBACK_KB;
-  }
-}
+### Flight Booking Guidelines:
+- Book a round trip flight with a return date before June 14 (critical for US administration)
+- Book with a flexible fare (allows date modifications)
+- Expected budget: between 600 and 800 euros. Most round trips from Europe are around 600 euros
+- Arrive on Friday April 10 — program starts Monday April 13
+- After booking, submit this form: https://airtable.com/appiaPHz7qq4bPkxW/shrx0QYS8cNi2CO9O
+- Finance team will invite you to Spendesk to expense flights, up to 1000 euros
 
-// Minimal fallback KB in case Notion is unreachable
-const FALLBACK_KB = `The Bridge Spring26 is an 8-week residency in San Francisco for non-US founders.
-Arrivals: April 10-12. Kick-off: April 13.
-For questions, contact operations-thebridge@joinef.com or ask on Slack #spring26-the-bridge.`;
+### Airport Transfers:
+- Private van service arranged for arrivals at SFO
+
+---
+
+## 6. EXPENSES & REIMBURSEMENT
+
+### How to get reimbursed:
+1. Fill out the expense form: https://airtable.com/appiaPHz7qq4bPkxW/shrx0QYS8cNi2CO9O
+2. Finance team adds you to Spendesk
+3. Submit expenses through Spendesk
+
+### Flight reimbursement cap: 1000 euros
+
+### Selection Days travel policy:
+- Up to 60 euros from France
+- Up to 150 euros from Europe
+- Up to 500 euros from outside Europe
+
+---
+
+## 7. HOUSING & LIVING IN SF
+
+### Residency Houses:
+- Two houses: one for women, one for men
+- Mission Dolores Manor (MDM) is the main hub
+- Women's house is ~5 minutes away on foot
+
+### MDM serves as central hub for:
+- Working
+- Meals
+- Sessions
+- Team building
+- Community events
+
+### What's provided:
+- Beds and basic furniture
+- Kitchen equipment
+- WiFi
+- Laundry
+- Shared work areas
+
+### What to bring:
+- Toiletries
+- Personal towels or sheets
+- Photos of family
+- Small personal items
+- That's it — the goal is to provide everything you need
+
+### Meals:
+- Chef committed for the program
+- Meals organized/provided during the residency
+
+### House Rules:
+- Respect shared spaces
+- Reasonable noise levels
+- Keep it clean
+- Be considerate of other residents
+- Visitors may be allowed depending on house policies (day visitors, overnight guests subject to guidelines shared at onboarding)
+
+---
+
+## 8. PERKS & BENEFITS
+
+### Gym Access
+- Partnership with Live Fit Gym (8 SF locations)
+- Negotiated rate: $107/month for premium membership
+
+### Transportation
+- Lyft Pass: $100 credit per founder for 8 weeks (rides, scooters, Bay Wheels bike share)
+- Clipper Card: $100 credit per founder for 8 weeks (full public transit — bus, tram, subway, train)
+
+### Connectivity
+- eSIM via Popcorn.Space ($49/month) — details being finalized
+
+### Merch
+- Branded totes, rugby shirts, caps, water bottles
+
+---
+
+## 9. WEEKLY SCHEDULE & RITUALS
+
+Monday — Monday Signal (12-2pm): Weekly intent, lightning updates, 45-min talk
+Tuesday — Workshops (12-2pm): Specific topics (GTM, PMF, etc.), everyone speaks
+Wednesday — EiR Day (Entrepreneur in Residence): Full-day, 45min-1hr per team
+Thursday — The Bridge Dinner (6-9pm): Founder guest from SF + bi-monthly demos (In Public)
+Friday — EiR or Weekly Progress Debrief (morning)
+Sunday — Weekly Run Day (Sunday Running Club)
+
+### Regular check-ins:
+- Team check-ins: 30 min/week/team with team member or EiR
+- Individual check-ins: 30 min every 2 weeks with a TI (Talent Investor)
+- EiR check-in: 30 min/week/team
+- Accountability: 1x every 2 weeks (2h) — group pitches/demos
+- 1:1 workshops: Tactical office hours, ad-hoc
+
+---
+
+## 10. CO-FOUNDER MATCHING & TEAMS
+
+- Co-founder relationships emerge through informal interactions, structured sessions, collaborative projects
+- Founders are encouraged to experiment before committing
+- Teams may form, dissolve, and reform — that's normal
+- If someone doesn't find a co-founder: continue exploring, join another team, continue solo, or leave and reapply
+- Founders can bring ideas but should validate quickly and stay open
+- Conflict is normal — staff can facilitate conversations and restructuring
+
+---
+
+## 11. INVESTMENT COMMITTEE
+
+### What IC looks for:
+- Strength of the founding team
+- Founder-market fit
+- Market size
+- Evidence of speed and execution
+- Early signals of user demand
+
+### If not funded:
+- Continue building independently
+- Seek external funding
+- Reapply to future programs
+- May still provide informal support
+
+---
+
+## 12. VISA & IMMIGRATION
+
+- The team helps guide founders through the visa process
+- Visa paperwork begins after acceptance
+- US Immigration Talk & Q&A with Monica — April 2nd (mandatory)
+  - 4:00pm CEST / 2:00pm GMT / 7:00am PDT
+  - Call link: https://meet.google.com/vvw-dfkv-azq
+- Critical if you're not already on a US visa
+
+---
+
+## 13. COMMUNICATION CHANNELS
+
+- Email: spring26-thebridge@joinef.com
+- Slack channels:
+  - #spring26-the-bridge (general)
+  - #spring26-the-bridge-announcements
+  - #spring26-the-bridge-team-formations
+- WhatsApp Group: Link coming soon
+- Wiki: https://entrepreneursfirst.notion.site/WIP-The-Bridge-SPRING26-WIKI-325e26adb8c980478b9fd89e951c3baf
+
+---
+
+## 14. PROGRAM COST
+
+Nothing. Covered:
+- Housing
+- Workspace
+- Food
+- Program costs
+
+---
+
+## 15. CULTURE & EXPECTATIONS
+
+- Full-time commitment — evenings and weekends often involve work
+- Successful founders are: extremely driven, fast learners, collaborative, comfortable with ambiguity, obsessed with building
+- Professional conduct, respectful collaboration, integrity expected
+- Harassment or disrespectful behavior is not tolerated
+- Side projects: founders are expected to focus fully on their company
+- Leaving early: the team will work with you to determine next steps
+
+---
+
+## 16. TOOLING
+
+- Founder Dashboard: https://airtable.com/appQQph3BFJyL9teo/shre7AVRTheX74WCY (Password: WelcometoTheBridge)
+- Team Dashboard: https://airtable.com/appQQph3BFJyL9teo/shrux9MNEeBPUfEvA (Password: WelcometoTheBridge)
+- Team Formation Form: https://airtable.com/appQQph3BFJyL9teo/pagrRDJwQD2EZg99L/form
+- Dashboard Signup: https://airtable.com/appQQph3BFJyL9teo/pagc8eb86mMx9RluS/form
+
+---
+
+## 17. KICK-OFF DAY (KOD) — April 13th
+
+Location: The office in San Francisco
+
+### KOD Agenda:
+10:00-11:00 — Breakfast on terrace + Registration
+11:00-11:30 — Welcome
+11:30-13:00 — Cohort Introductions (1 minute per person — they WILL cut you off)
+13:00-14:00 — Lunch (use this to talk to people you're keen on!)
+14:00-15:00 — Edge and Ideation recap + Intro to team-building
+15:00-15:30 — Break
+15:30-16:10 — Co-Founder Carousel 1
+16:10-16:30 — Break
+16:30-17:10 — Co-Founder Carousel 2
+17:15-19:00 — Dinner
+End of Day 1
+
+### 3 goals for KOD:
+1. Leave with a list of 5 potential co-founders you want to explore working with
+2. Know how to evaluate a potential co-founder
+3. Know what your edge is
+
+### Cohort Introductions (1 minute each)
+Pitch yourself to the full cohort. Cover:
+- Your name
+- Your edge (what makes you unique)
+- Most exciting thing you've previously worked on
+- What you want to work on at The Bridge (industry, product, etc.)
+- Why should people work with you? (what makes you an outlier)
+
+Tips: Be memorable, punchy, and clear. Avoid being generic, waffly, or humble.
+
+### Co-Founder Carousel (2.5 minutes per person)
+Speed-dating for co-founders. Split into groups — one stays seated, other rotates.
+Cover:
+- Your name
+- Most exciting thing you've previously worked on
+- Your most counterintuitive belief about how the world will be different in 5 years
+
+Tips: Have your pitch ready, take notes, watch the clock. Don't forget who you spoke to!
+
+---
+
+## 18. RECOMMENDED READING & CONTENT
+
+Ideation & Team Formation:
+- "Future Founders, Here's How to Spot and Build in Nonobvious Markets" (First Round Review) — https://review.firstround.com/future-founders-heres-how-to-spot-and-build-in-nonobvious-markets/
+- "Choose Good Quests" (Founders Fund) — https://foundersfund.com/2023/06/choose-good-quests/
+- "Competition is for Losers" — Peter Thiel — https://www.youtube.com/watch?v=3Fx5Q8xGU8k
+- "The Founding Career Path" — Alice Bentinck — https://alicebentinck.substack.com/p/the-founding-career-path
+- "Optionality is a mind virus" (99d Substack) — https://99d.substack.com/p/optionality-is-a-mind-virus
+
+Customer Discovery & MVP:
+- "The Mom Test" by Rob Fitzpatrick — how to talk to customers
+- "What TAM should actually tell you" — https://wquist.com/p/what-tam-should-actually-tell-you
+
+Product & PMF:
+- "How Superhuman Built an Engine to Find Product/Market Fit" (First Round Review) — https://review.firstround.com/how-superhuman-built-an-engine-to-find-product-market-fit/
+- "The Arc PMF Framework" (Sequoia) — https://sequoiacap.com/article/pmf-framework/
+- "The Arc PMF Terrifying Questions Framework" (Sequoia) — https://sequoiacap.com/article/pmf-framework-2/
+- "Building AI Products In The Probabilistic Era" — https://giansegato.com/essays/probabilistic-era
+
+Go-to-Market / Revenue:
+- "Pricing the AI Workforce" (NFX) — https://www.nfx.com/post/ai-pricing-innovation
+- "Founding Sales" — The Founder Led Sales Handbook — https://www.foundingsales.com/
+- "Pricing in the AI Era" (Sequoia podcast with Manny Medina) — https://sequoiacap.com/podcast/pricing-in-the-ai-era-from-inputs-to-outcomes-with-paid-ceo-manny-medina/
+
+Fundraising:
+- "Startups are just stories about the future" (99d) — https://99d.substack.com/p/stories-about-the-future
+- "Startups are Risk Bundles" (Coding VC) — https://www.codingvc.com/p/startups-are-risk-bundles
+- "Narrative Is the Interface" (99d) — https://99d.substack.com/p/important-narratives-important-companies
+
+Founder Mindset:
+- "How to Work Hard" — Paul Graham — https://paulgraham.com/hwh.html
+- "How to Be More Agentic" (Every) — https://every.to/p/how-to-be-more-agentic
+- "Learn to Love the Moat of Low Status" (Useful Fictions) — https://usefulfictions.substack.com/p/learn-to-love-the-moat-of-low-status
+
+---
+
+## 19. PARTNERSHIPS & CREDITS (Available before funding)
+
+### AWS Activate
+- $10,000 in AWS credit valid for 24 months (more credits available post-IC)
+- 1 year Premium Business Support (up to $1,500 value)
+- 80 credits for online training modules
+- How to redeem: Visit https://aws.amazon.com/startups/credits
+- Organisation ID (case sensitive): 6X7ED
+- Important: Apply using a proper domain URL and matching email domain (AWS anti-fraud system auto-rejects mismatches)
+- If you haven't formed a company yet, apply with [YourName].com format
+- AWS bills at end of month — even if credits aren't immediate, use the products and credits will cover once applied
+- Contact for AWS Startup team: Joel Shamash (jshamash@amazon.com)
+
+### Google Cloud Platform
+- Credits starting at $25k USD and up to $250k (based on funding and spend milestones)
+- Technical help including office hours and workshops
+- Access to Startup Success Managers
+- $500 USD Google Cloud Skills Boost credits
+- Google Workspace Business Plus for 1 year (new signups only)
+- Apply at: https://cloud.google.com/startup/apply
+- Make sure to select "Entrepreneur First" in the partner field
+- Questions: cloudprogram@google.com
+
+### Microsoft for Startups
+- Up to $150,000 in free Azure credits
+- $2,500 in OpenAI credits
+- Visual Studio Enterprise and GitHub Enterprise licences
+- Free Microsoft 365, Power Platform, Dynamics 365, LinkedIn licences
+- Apply at: https://startups.microsoft.com
+- Questions: startups@microsoft.com
+
+### OpenAI Partnership
+- All cohort members: $2,500 in OpenAI credits
+- Teams that pass IC: $10,000 in OpenAI credits
+- Credits valid for 2 years
+- Includes onboarding sessions with OpenAI support engineer
+- How to redeem:
+  1. Create OpenAI account at https://platform.openai.com/
+  2. Add payment method at https://platform.openai.com/account/billing/payment-methods
+  3. Submit form: https://docs.google.com/forms/d/e/1FAIpQLSdHNHvpvRvRXCJ81MqtkXb1324D4HGmmxYmjE34OFuLJNfNJA/viewform
+- Note: Cannot redeem if you've already received Microsoft for Startups credits
+- Tip: Apply for Microsoft for Startups first (also gives $2,500 OpenAI credits + Azure + LinkedIn etc.)
+
+### 200+ Global Partners
+- Full list: https://airtable.com/appAFQYnRFRl6HNRD/shrF5RArV8uKlwtQ3/tblzGlpipmUKpED0b
+- New partnerships announced on #ef-partnership-announcements Slack channel
+- To request a partner: https://airtable.com/appAFQYnRFRl6HNRD/shrs2WqAalJHffPKs
+
+---
+
+## 20. SF GUIDEBOOK — Mission District
+
+### Mission Dolores Manor Area
+The Mission District is one of the most vibrant and walkable neighborhoods in SF — full of cafes, restaurants, parks, and cultural landmarks.
+
+### Cafes (Great for Working)
+- Sightglass Coffee (Mission) — https://sightglasscoffee.com/pages/mission — Beautiful cafe, lots of seating
+- Four Barrel Coffee — https://www.fourbarrelcoffee.com — One of SF's best-known roasters, strong WiFi
+- Ritual Coffee Roasters — https://ritualcoffee.com/pages/mission-district — Reliable coffee, good workspace
+- Grand Coffee Too — https://grandcoffee.com — Small but cozy neighborhood cafe
+- Stable Cafe — https://stablecafe.com — Hidden courtyard workspace, great for quiet sessions
+- The Mill — https://www.themillsf.com — Popular founder work spot
+
+### Mission Burritos (A must-try!)
+- La Taqueria — https://lataqueriasf.com
+- Taqueria Cancun — https://taqueriacancunsf.com
+- El Farolito — famous late-night spot
+
+### Great Restaurants
+- Foreign Cinema — https://foreigncinema.com
+- Tartine Bakery — https://tartinebakery.com
+- Lolo — https://lolosf.com
+- Beretta — https://berettasf.com
+- Flour + Water — https://flourandwater.com
+
+### Bars & Drinks
+- Trick Dog — https://trickdogbar.com — One of the most famous cocktail bars in the world
+- ABV — https://www.abvsf.com — Excellent cocktails and food
+- Zeitgeist — https://zeitgeistsf.com — Classic Mission outdoor beer garden
+- True Laurel — https://truelaurelsf.com — Modern cocktail bar from the Lazy Bear team
+
+### Parks & Outdoor Spaces
+- Mission Dolores Park — The neighborhood's central park and social hub. Soccer, basketball, tennis courts. Incredible skyline views. Unofficial founder hangout spot.
+- Garfield Square — Nearby park with soccer field
+- Potrero del Sol Park
+- In Chan Kaajal Park
+
+### Sports & Recreation
+- Basketball: Mission Dolores Park Courts
+- Soccer: Garfield Square Soccer Field
+- Running Routes: Dolores Park to Valencia Street to Mission District loops
+
+### Getting Around
+- Bike Share (Bay Wheels): https://www.lyft.com/bikes/bay-wheels — Stations at 16th St Mission BART, Valencia & 16th, Dolores Park
+- BART: 16th St Mission Station and 24th St Mission Station — connects to Downtown SF, Oakland/Berkeley, SFO Airport
+- MUNI Metro: Church St & 18th St (J Church Line)
+- Pro tip: Biking is often faster than driving in SF
+
+### Gyms
+- Live Fit Gym (Mission) — https://livefitgym.com — 8 SF locations, $107/month premium membership
+
+### Best Hikes in SF
+- Twin Peaks — Panoramic city views
+- Lands End — Coastal trail with Golden Gate Bridge views
+- Mount Sutro Trails — Forest trails in the city
+- Presidio Trails — Former military base, beautiful nature
+
+### Explore the Mission
+- Valencia Street — Boutiques, cafes, bars, bookstores
+- Mission Street — Classic taquerias and cultural spots
+- Balmy Alley — https://www.precitaeyes.org/balmy-alley — Famous street mural alley
+
+### Pro Tips
+- Dolores Park is the unofficial founder hangout spot
+- Biking is often faster than driving in SF
+- The Mission is one of the best food neighborhoods in the US
+- Walk everywhere — you'll discover hidden gems daily
+
+---
+
+## 21. SF ECOSYSTEM & COMMUNITY
+
+### Office Events Calendar
+- Link: https://airtable.com/appVBgAmtUqoLRdco/shruLur2lOGnQJZLh
+- Password: EFEvents2026
+
+### Slack Channels for SF
+- #sanfrancisco
+- #sf-office-updates
+
+### SF Community WhatsApp
+- Community group to meet other folks in the Bay
+- Invite link: https://drive.google.com/file/d/1A4AvN2yhbA4IUuGDruikaZspSJN-EtWJ/view?usp=sharing
+- When you join, intro with: company name, one-liner, and where you're based in the Bay
+
+---
+
+## 22. IP & LEGAL
+
+- Founders typically own the IP created within their company
+- Specific details depend on the investment and legal structure
+- For legal questions, reach out to the team
+
+---
+
+## 23. AFTER THE BRIDGE
+
+If funded ($250k):
+- Stay in SF for 3 more months
+- Build from the San Francisco office
+- Hands-on support from the team
+- Prepare to raise next round
+- Culminates in Demo Day (pitch to investors)
+
+Fundraising support:
+- Investor introductions
+- Pitch development
+- Narrative refinement
+- Fundraising strategy
+- Demo Day exposure
+
+Can founders raise before Demo Day?
+Generally encouraged to prepare for Demo Day, but exceptional teams may receive earlier investor interest.
+
+Can founders hire during the program?
+Yes, though most teams stay small during the residency. Hiring typically starts after funding is secured.
+`;
 
 // ═══════════════════════════════════════════════════════════
 // SYSTEM PROMPT
 // ═══════════════════════════════════════════════════════════
 
-function buildSystemPrompt(knowledgeBase) {
-  return `You are Dolores, the official WhatsApp assistant for The Bridge Spring26.
+const SYSTEM_PROMPT = `You are Dolores, the official WhatsApp assistant for The Bridge Spring26.
 
 ## Your Identity
 - Your name is Dolores — named after Mission Dolores Manor, the house in San Francisco where The Bridge founders live during the program
@@ -241,7 +591,7 @@ You are writing for WhatsApp, NOT a website or email. Follow these rules strictl
 ### DON'T:
 - Make up information not in the knowledge base
 - Share internal ops details or staff-only info
-- Give immigration/visa advice beyond directing to the Monica session and EF team
+- Give immigration/visa advice beyond directing to the Monica session and the team
 - Share the dashboard passwords proactively — only if a founder specifically asks for dashboard access
 - Discuss other founders' personal info
 - Make promises about funding, acceptance, or outcomes
@@ -249,14 +599,13 @@ You are writing for WhatsApp, NOT a website or email. Follow these rules strictl
 
 ### WHEN YOU DON'T KNOW:
 Say something like:
-- "Not sure about that one — hit up the team at operations-thebridge@joinef.com and they'll sort you out"
+- "Not sure about that one — hit up the team at spring26-thebridge@joinef.com and they'll sort you out"
 - "Good question but I don't have the answer yet. Ping the team on Slack #spring26-the-bridge"
 
 ## KNOWLEDGE BASE:
 
-${knowledgeBase}
+${KNOWLEDGE_BASE}
 `;
-}
 
 // ═══════════════════════════════════════════════════════════
 // CLAUDE API — conversation management
@@ -283,14 +632,10 @@ async function generateResponse(phoneNumber, userMessage) {
   addToHistory(phoneNumber, "user", userMessage);
   const messages = getHistory(phoneNumber);
 
-  // Fetch fresh knowledge base from Notion
-  const knowledgeBase = await getKnowledgeBase();
-  const systemPrompt = buildSystemPrompt(knowledgeBase);
-
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 1024,
-    system: systemPrompt,
+    system: SYSTEM_PROMPT,
     messages,
   });
 
@@ -472,7 +817,7 @@ module.exports = async function handler(req, res) {
       if (message.type !== "text") {
         await sendMessage(
           from,
-          "Hey! I can only read text messages for now. Type your question and I'll help you out 🙂"
+          "Hey! I can only read text messages for now. Type your question and I'll help you out"
         );
         await logMessage({
           messageId,
