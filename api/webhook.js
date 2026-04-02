@@ -1,28 +1,33 @@
 // Dolores — Single-file serverless function for Vercel
-// Knowledge base generated from Notion on 2026-03-30
+// Knowledge base generated from Notion on 2026-04-02
 
 const Anthropic = require("@anthropic-ai/sdk");
 const axios = require("axios");
 
 // ═══════════════════════════════════════════════════════════
-// KNOWLEDGE BASE (generated from Notion — last sync: 2026-03-30)
+// KNOWLEDGE BASE (generated from Notion — last sync: 2026-04-02)
 // ═══════════════════════════════════════════════════════════
 
 const KNOWLEDGE_BASE = `
-# The Bridge Spring26 — Knowledge Base
-Last updated: March 30, 2026
+# The Bridge — WhatsApp Chatbot Knowledge Base
+
+> This document is the single source of truth for the WhatsApp chatbot. It contains all verified information about The Bridge Spring26 programme. The bot should ONLY answer based on this content. If something isn't covered here, the bot should say it doesn't know and direct the user to email spring26-thebridge@joinef.com.
+
+Last updated: April 2, 2026
 
 ---
 
 ## 1. WHAT IS THE BRIDGE?
 
-The Bridge is a program based fully in San Francisco for exceptional non-US founders at Stage 0 (pre-idea or pre-team).
+The Bridge is a program by Entrepreneurs First (EF) based fully in San Francisco for exceptional non-US founders at Stage 0 (pre-idea or pre-team).
 
 It's an 8-week intensive residency designed for ~40 young engineers/builders ready to build their own company — their bridge to the US and Silicon Valley.
 
+EF has just raised $200M to back the next generation of founders. The Bridge is the flagship program for that mission.
+
 ### Two phases:
 
-Phase 1 — FORM (8-week residency)
+**Phase 1 — FORM (8-week residency)**
 - Live and build together in a shared founder house in SF
 - Meet potential co-founders
 - Explore ideas or refine early concepts
@@ -30,33 +35,34 @@ Phase 1 — FORM (8-week residency)
 - Rapidly test markets and problem spaces
 - At the end, teams pitch to the Investment Committee
 
-Phase 2 — Company Building (3 months, funded teams only)
+**Phase 2 — Company Building (3 months, funded teams only)**
 - Teams that receive funding stay in SF for 3 more months
-- Build full-time from the San Francisco office
-- Hands-on support from the team
+- Build full-time from the EF San Francisco office
+- Hands-on support from the EF team
 - Prepare to raise next round
 - Culminates in Demo Day
 
 ### Funding
-- Strongest teams receive $250,000 in pre-seed funding
-- $250k on simple terms:
-  - $125k for 8% equity via a SAFE
+- Strongest teams receive **$250,000 in pre-seed funding**
+- EF invests $250k on simple terms:
+  - $125k for 8% equity via an EF SAFE
   - Optional $125k MFN SAFE
-- Alumni have raised from: Sequoia, Founders Fund, a16z, Benchmark, Index
+- EF alumni have raised from: Sequoia, Founders Fund, a16z, Benchmark, Index
+- EF is backed by: Patrick & John Collison, Demis Hassabis, Reid Hoffman, Eric Schmidt, Mati Staniszewski (ElevenLabs), and more
 
 ---
 
 ## 2. WHO IS IT FOR?
 
-The Bridge is for Stage 0 founders — people who may arrive pre-idea, pre-team, or with early ideas.
+The Bridge is for **Stage 0 founders** — people who may arrive pre-idea, pre-team, or with early ideas.
 
 Profiles we look for:
 
-Builders: Engineers, researchers, hackers, product builders
-Future CEOs: Commercial operators, growth leaders, sales/distribution experts
+**Builders:** Engineers, researchers, hackers, product builders
+**Future CEOs:** Commercial operators, growth leaders, sales/distribution experts
 
 - Typically based outside the United States
-- Not limited to CS or AI — support across software, AI, robotics, deep tech, and other domains
+- Not limited to CS or AI — we support founders across software, AI, robotics, deep tech, and other domains
 - Also support founders strong in growth, distribution, and sales
 - Very competitive: only ~40 founders per cohort
 
@@ -64,50 +70,49 @@ Future CEOs: Commercial operators, growth leaders, sales/distribution experts
 
 ## 3. SPRING26 KEY DATES & TIMELINE
 
-Before March 31 — Complete Pre-Bridge Checklist (founder profile, flight info, calendar)
-March 31 — AMA with Alice Bentinck (CEO) — 6:30pm CEST / 4:30pm GMT / 9:30am PDT — Call link: https://meet.google.com/pjj-tvxz-hhy
-April 2 — US Immigration Talk & Q&A with Monica — 4:00pm CEST / 2:00pm GMT / 7:00am PDT — Call link: https://meet.google.com/vvw-dfkv-azq
-April 10-12 — Arrivals in San Francisco
-April 13 — Kick-off Day (KOD)
-Week 1-2 — Exploration and co-founder matching
-Week 3-4 — Early idea validation and user conversations
-Week 5-6 — Product iteration and deeper market exploration
-Week 7 — Preparing for Investment Committee
-Week 8 — Investment Committee pitches
+| Date | Event |
+|------|-------|
+| Before March 31 | Complete Pre-Bridge Checklist (founder profile, flight info, calendar) |
+| March 31 | AMA with Alice Bentinck (CEO) — 6:30pm CEST / 4:30pm GMT / 9:30am PDT |
+| April 2 | US Immigration Talk & Q&A with Monica — 4:00pm CEST / 2:00pm GMT / 7:00am PDT |
+| April 9-11 | Arrivals (some early on April 9, bulk on April 10, final on April 11) |
+| April 13-14 | Kick-off Days (TWO days) |
+| April 18 | The Bridge Offsite at Stinson Beach (8:30am-3:00pm) |
+| Week 1-2 | Exploration and co-founder matching |
+| Week 3-4 | Early idea validation and user conversations |
+| Week 5-6 | Product iteration and deeper market exploration |
+| Week 7 | Preparing for Investment Committee |
+| Week 8 | Investment Committee pitches |
+| Week of June 9 | IC week |
 
 ---
 
 ## 4. PRE-BRIDGE CHECKLIST
 
 ### Before March 31st:
-1. Founder Profile — Complete at: https://airtable.com/appQQph3BFJyL9teo/pagc8eb86mMx9RluS/form
-2. Flight Information — Fill out at: https://airtable.com/appHQ6zqny4qVWgOZ/pagGbhY5LsAM7YklM/form (deadline: Friday March 27th 6PM — if not booked by then, considered not joining)
-3. Add Calendar — https://calendar.google.com/calendar/u/0?cid=Y181MmFhMTkxNzVjMGU3OGQ5OTk5MTU1OGQzZjZhZTA3MmUzNjQ3NjRkYzlmZjNlNDk5NGMyY2NjNjVlZjY4NDQ3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20
+1. **Founder Profile** — Complete at: https://airtable.com/appQQph3BFJyL9teo/pagc8eb86mMx9RluS/form
+2. **Flight Information** — Fill out at: https://airtable.com/appHQ6zqny4qVWgOZ/pagGbhY5LsAM7YklM/form (deadline: Friday March 27th 6PM — if not booked by then, considered not joining)
+3. **Add Calendar** — https://calendar.google.com/calendar/u/0?cid=Y181MmFhMTkxNzVjMGU3OGQ5OTk5MTU1OGQzZjZhZTA3MmUzNjQ3NjRkYzlmZjNlNDk5NGMyY2NjNjVlZjY4NDQ3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20
 
 ### After March 31st:
-1. Founder Dashboard — Review cohort dashboard and teams dashboard
-2. Slack — Download Slack, turn on notifications for:
+1. **Founder Dashboard** — Review cohort dashboard and teams dashboard
+2. **Slack** — Download Slack, turn on notifications for:
    - #spring26-the-bridge (general comms)
    - #spring26-the-bridge-announcements (announcements)
    - #spring26-the-bridge-team-formations (team updates)
-3. WhatsApp Group — Link coming soon
-4. Prepare for The Bridge:
-   - Review the recommended reading content
-   - Check out who you'll be working with (partners database)
-   - Explore the SF ecosystem page
-   - Review KOD preparation materials
+3. **WhatsApp Group** — https://chat.whatsapp.com/LIJnR9Z3h9uCWGkhhWlDMP?mode=gi_t
 
 ---
 
 ## 5. FLIGHTS & TRAVEL
 
 ### Flight Booking Guidelines:
-- Book a round trip flight with a return date before June 14 (critical for US administration)
-- Book with a flexible fare (allows date modifications)
-- Expected budget: between 600 and 800 euros. Most round trips from Europe are around 600 euros
-- Arrive on Friday April 10 — program starts Monday April 13
+- Book a **round trip flight** with a return date **before June 14** (critical for US administration)
+- Book with a **flexible fare** (allows date modifications)
+- Expected budget: **€600–€800** (most round trips from Europe are ~€600)
+- Arrive on **Friday April 10** — program starts Monday April 13
 - After booking, submit this form: https://airtable.com/appiaPHz7qq4bPkxW/shrx0QYS8cNi2CO9O
-- Finance team will invite you to Spendesk to expense flights, up to 1000 euros
+- Finance team will invite you to **Spendesk** to expense flights (up to €800)
 
 ### Airport Transfers:
 - Private van service arranged for arrivals at SFO
@@ -118,15 +123,15 @@ Week 8 — Investment Committee pitches
 
 ### How to get reimbursed:
 1. Fill out the expense form: https://airtable.com/appiaPHz7qq4bPkxW/shrx0QYS8cNi2CO9O
-2. Finance team adds you to Spendesk
+2. Finance team adds you to **Spendesk**
 3. Submit expenses through Spendesk
 
-### Flight reimbursement cap: 1000 euros
+### Flight reimbursement cap: **€800**
 
 ### Selection Days travel policy:
-- Up to 60 euros from France
-- Up to 150 euros from Europe
-- Up to 500 euros from outside Europe
+- Up to €60 from France
+- Up to €150 from Europe
+- Up to €500 from outside Europe
 
 ---
 
@@ -134,7 +139,7 @@ Week 8 — Investment Committee pitches
 
 ### Residency Houses:
 - Two houses: one for women, one for men
-- Mission Dolores Manor (MDM) is the main hub
+- **Mission Dolores Manor (MDM)** is the main hub
 - Women's house is ~5 minutes away on foot
 
 ### MDM serves as central hub for:
@@ -162,63 +167,93 @@ Week 8 — Investment Committee pitches
 - Chef committed for the program
 - Meals organized/provided during the residency
 
-### House Rules:
-- Respect shared spaces
-- Reasonable noise levels
-- Keep it clean
-- Be considerate of other residents
-- Visitors may be allowed depending on house policies (day visitors, overnight guests subject to guidelines shared at onboarding)
+---
+
+## 8. KEY LOCATIONS
+
+- **MDM House**: 822 S. Van Ness Ave, San Francisco, CA — https://maps.app.goo.gl/jNHde4iQeJuAXUn78
+- **EF Office**: 501 Folsom St, San Francisco, CA — https://maps.app.goo.gl/ms6BrbmBW7k34oMn9
 
 ---
 
-## 8. PERKS & BENEFITS
+## 9. PERKS
 
 ### Gym Access
-- Partnership with Live Fit Gym (8 SF locations)
-- Negotiated rate: $107/month for premium membership
+- Partnership with **Live Fit Gym** (8 SF locations)
+- EF-negotiated rate: $107/month for premium membership
 
 ### Transportation
-- Lyft Pass: $100 credit per founder for 8 weeks (rides, scooters, Bay Wheels bike share)
-- Clipper Card: $100 credit per founder for 8 weeks (full public transit — bus, tram, subway, train)
+- **Lyft Pass**: $100 credit per founder for 8 weeks (rides, scooters, Bay Wheels bike share)
+- **Clipper Card**: $100 credit per founder for 8 weeks (full public transit — bus, tram, subway, train)
 
 ### Connectivity
-- eSIM via Popcorn.Space ($49/month) — details being finalized
+- **eSIM** via Popcorn.Space ($49/month) — details being finalized
 
 ### Merch
 - Branded totes, rugby shirts, caps, water bottles
 
 ---
 
-## 9. WEEKLY SCHEDULE & RITUALS
+## 10. WEEKLY SCHEDULE & RITUALS
 
-Monday — Monday Signal (12-2pm): Weekly intent, lightning updates, 45-min talk
-Tuesday — Workshops (12-2pm): Specific topics (GTM, PMF, etc.), everyone speaks
-Wednesday — EiR Day (Entrepreneur in Residence): Full-day, 45min-1hr per team
-Thursday — The Bridge Dinner (6-9pm): Founder guest from SF + bi-monthly demos (In Public)
-Friday — EiR or Weekly Progress Debrief (morning)
-Sunday — Weekly Run Day (Sunday Running Club)
+### Weekly cadence:
 
-### Regular check-ins:
-- Team check-ins: 30 min/week/team with team member or EiR
-- Individual check-ins: 30 min every 2 weeks with a TI (Talent Investor)
-- EiR check-in: 30 min/week/team
-- Accountability: 1x every 2 weeks (2h) — group pitches/demos
-- 1:1 workshops: Tactical office hours, ad-hoc
+**Monday Morning Standup** (at the house)
+Coffee, breakfast, and short updates from each team. Each team gets 5 minutes:
+- What you're working on (two sentences)
+- Your goal by IC
+- The best thing you shipped last week
+- The most important thing you learned about your customer last week
+- The most important tech unlock you had last week (if any)
+
+**Team Check-ins** (once per week, 30 min)
+Assigned weekly slot, typically midweek (Tue-Thu). Focus on:
+- What's working and what's not
+- Clarifying priorities for the week
+- Making sure you're not stuck on something that doesn't matter
+
+**Individual Check-ins** (every 2 weeks, 30 min)
+Focus on: market fit, cofounder dynamics, individual strengths, what to improve.
+
+**Tactical Workshops** (ad hoc, on request)
+Examples: customer discovery feedback, outreach message workshopping, product demo rewrite, market framing sessions.
+
+**Optional Sunday Run**
+Weekly, founder-led Sunday morning run through SF hills.
 
 ---
 
-## 10. CO-FOUNDER MATCHING & TEAMS
+## 11. PROGRAM STRUCTURE: WEEK-BY-WEEK FOCUS
+
+**Pre-program weekend (April 9-11)**
+Arrive, settle into the house, get oriented, get over jet lag. Meet everyone, talk about what you might want to build and who you might want to build with.
+
+**Week 1 (learn about the foundations)**
+First two days are Kick-off Days at the office. Covers ideation frameworks, markets, cofounders. By end of week 1, if you didn't arrive in a team, you should have formed a first one with an initial direction. Includes Offsite on Saturday April 18.
+
+**Week 2 (learn how to execute)**
+Focus on operational effectiveness: customer discovery, outreach, selling, pitching, distinguishing real traction from fake. Ideally by end of week 2: set on a team, a market, and a problem space.
+
+**Weeks 3-7 (build mode)**
+Calendar should look like a founder's calendar: talking to customers, building, iterating, shipping. The Bridge team stays close through check-ins and tactical workshops.
+
+**Week 8 (IC prep + Investment Committee)**
+Translating progress into a concise, credible story. Dedicated sessions on fundraising mindset and IC preparation.
+
+---
+
+## 12. CO-FOUNDER MATCHING & TEAMS
 
 - Co-founder relationships emerge through informal interactions, structured sessions, collaborative projects
 - Founders are encouraged to experiment before committing
 - Teams may form, dissolve, and reform — that's normal
 - If someone doesn't find a co-founder: continue exploring, join another team, continue solo, or leave and reapply
 - Founders can bring ideas but should validate quickly and stay open
-- Conflict is normal — staff can facilitate conversations and restructuring
+- Conflict is normal — EF staff can facilitate conversations and restructuring
 
 ---
 
-## 11. INVESTMENT COMMITTEE
+## 13. INVESTMENT COMMITTEE
 
 ### What IC looks for:
 - Strength of the founding team
@@ -227,40 +262,52 @@ Sunday — Weekly Run Day (Sunday Running Club)
 - Evidence of speed and execution
 - Early signals of user demand
 
+### What IC actually is:
+- 30-minute meeting with 2-3 people from the EF team or advisor network
+- They will have read/watched your materials beforehand
+- Time is used to go deeper: what you're building, what you've learned, how you think about the market, team dynamics
+- After all panels, EF partners meet for final decisions
+- Your panel is one input; your trajectory over the 8 weeks is also considered
+
+### What happens if funded:
+- Top teams receive $250k from EF
+- Move from The Bridge (Form phase) into EF Launch program
+- Build towards Demo Day and first round of institutional investment
+
 ### If not funded:
 - Continue building independently
 - Seek external funding
-- Reapply to future programs
-- May still provide informal support
+- Reapply to future EF programs
+- EF may still provide informal support
 
 ---
 
-## 12. VISA & IMMIGRATION
+## 14. VISA & IMMIGRATION
 
-- The team helps guide founders through the visa process
+- EF team helps guide founders through the visa process
 - Visa paperwork begins after acceptance
-- US Immigration Talk & Q&A with Monica — April 2nd (mandatory)
+- **US Immigration Talk & Q&A with Monica** — April 2nd (mandatory)
   - 4:00pm CEST / 2:00pm GMT / 7:00am PDT
   - Call link: https://meet.google.com/vvw-dfkv-azq
 - Critical if you're not already on a US visa
 
 ---
 
-## 13. COMMUNICATION CHANNELS
+## 15. COMMUNICATION CHANNELS
 
-- Email: operations-thebridge@joinef.com
-- Slack channels:
+- **Email**: spring26-thebridge@joinef.com
+- **Slack channels**:
   - #spring26-the-bridge (general)
   - #spring26-the-bridge-announcements
   - #spring26-the-bridge-team-formations
-- WhatsApp Group: Link coming soon
-- Wiki: https://entrepreneursfirst.notion.site/WIP-The-Bridge-SPRING26-WIKI-325e26adb8c980478b9fd89e951c3baf
+- **WhatsApp Group**: https://chat.whatsapp.com/LIJnR9Z3h9uCWGkhhWlDMP?mode=gi_t
+- **Wiki**: https://entrepreneursfirst.notion.site/WIP-The-Bridge-SPRING26-WIKI-325e26adb8c980478b9fd89e951c3baf
 
 ---
 
-## 14. PROGRAM COST
+## 16. PROGRAM COST
 
-Nothing. Covered:
+**Nothing.** EF covers:
 - Housing
 - Workspace
 - Food
@@ -268,270 +315,182 @@ Nothing. Covered:
 
 ---
 
-## 15. CULTURE & EXPECTATIONS
+## 17. CULTURE & EXPECTATIONS
 
 - Full-time commitment — evenings and weekends often involve work
 - Successful founders are: extremely driven, fast learners, collaborative, comfortable with ambiguity, obsessed with building
 - Professional conduct, respectful collaboration, integrity expected
 - Harassment or disrespectful behavior is not tolerated
 - Side projects: founders are expected to focus fully on their company
-- Leaving early: the team will work with you to determine next steps
+- Leaving early: EF will work with you to determine next steps
 
 ---
 
-## 16. TOOLING
+## 18. TOOLING
 
-- Founder Dashboard: https://airtable.com/appQQph3BFJyL9teo/shre7AVRTheX74WCY (Password: WelcometoTheBridge)
-- Team Dashboard: https://airtable.com/appQQph3BFJyL9teo/shrux9MNEeBPUfEvA (Password: WelcometoTheBridge)
-- Team Formation Form: https://airtable.com/appQQph3BFJyL9teo/pagrRDJwQD2EZg99L/form
-- Dashboard Signup: https://airtable.com/appQQph3BFJyL9teo/pagc8eb86mMx9RluS/form
-
----
-
-## 17. KICK-OFF DAY (KOD) — April 13th
-
-Location: The office in San Francisco
-
-### KOD Agenda:
-10:00-11:00 — Breakfast on terrace + Registration
-11:00-11:30 — Welcome
-11:30-13:00 — Cohort Introductions (1 minute per person — they WILL cut you off)
-13:00-14:00 — Lunch (use this to talk to people you're keen on!)
-14:00-15:00 — Edge and Ideation recap + Intro to team-building
-15:00-15:30 — Break
-15:30-16:10 — Co-Founder Carousel 1
-16:10-16:30 — Break
-16:30-17:10 — Co-Founder Carousel 2
-17:15-19:00 — Dinner
-End of Day 1
-
-### 3 goals for KOD:
-1. Leave with a list of 5 potential co-founders you want to explore working with
-2. Know how to evaluate a potential co-founder
-3. Know what your edge is
-
-### Cohort Introductions (1 minute each)
-Pitch yourself to the full cohort. Cover:
-- Your name
-- Your edge (what makes you unique)
-- Most exciting thing you've previously worked on
-- What you want to work on at The Bridge (industry, product, etc.)
-- Why should people work with you? (what makes you an outlier)
-
-Tips: Be memorable, punchy, and clear. Avoid being generic, waffly, or humble.
-
-### Co-Founder Carousel (2.5 minutes per person)
-Speed-dating for co-founders. Split into groups — one stays seated, other rotates.
-Cover:
-- Your name
-- Most exciting thing you've previously worked on
-- Your most counterintuitive belief about how the world will be different in 5 years
-
-Tips: Have your pitch ready, take notes, watch the clock. Don't forget who you spoke to!
+- **Founder Dashboard**: https://airtable.com/appQQph3BFJyL9teo/shre7AVRTheX74WCY (Password: WelcometoTheBridge)
+- **Team Dashboard**: https://airtable.com/appQQph3BFJyL9teo/shrux9MNEeBPUfEvA (Password: WelcometoTheBridge)
+- **Team Formation Form**: https://airtable.com/appQQph3BFJyL9teo/pagrRDJwQD2EZg99L/form
+- **Dashboard Signup**: https://airtable.com/appQQph3BFJyL9teo/pagc8eb86mMx9RluS/form
+- **Break up / pivot form**: Coming soon
+- **Pocket letter form**: https://airtable.com/appVOkfxMJIjwVZcj/pag5FFGW6TAJYDec1/form
 
 ---
 
-## 18. RECOMMENDED READING & CONTENT
+## 19. KICK-OFF DAYS (KOD)
 
-Ideation & Team Formation:
-- "Future Founders, Here's How to Spot and Build in Nonobvious Markets" (First Round Review) — https://review.firstround.com/future-founders-heres-how-to-spot-and-build-in-nonobvious-markets/
-- "Choose Good Quests" (Founders Fund) — https://foundersfund.com/2023/06/choose-good-quests/
-- "Competition is for Losers" — Peter Thiel — https://www.youtube.com/watch?v=3Fx5Q8xGU8k
-- "The Founding Career Path" — Alice Bentinck — https://alicebentinck.substack.com/p/the-founding-career-path
-- "Optionality is a mind virus" (99d Substack) — https://99d.substack.com/p/optionality-is-a-mind-virus
+**Day 1 - Monday April 13 (at EF Office)**
+- 9:00-10:00 — Breakfast + expectation setting
+- 10:15-11:15 — Talk: Ideation frameworks
+- 11:30-12:30 — Talk: Markets
+- 12:30-2:00 — Cohort lunch
+- 2:00-3:00 — Talk: Cofounders
+- 3:00-6:00 — Cofounder Carousel
 
-Customer Discovery & MVP:
+**Day 2 - Tuesday April 14 (at EF Office)**
+- 9:00-10:00 — Talk: Customers
+- 10:15-11:15 — Talk: Customer discovery
+- 11:30-12:30 — Talk: Outreach
+
+---
+
+## 20. FIRST WEEK DETAILED SCHEDULE
+
+**Friday April 10 - Arrival Day** (MDM House)
+- 8:00 AM-12:00 PM: Arrivals + check-in
+- 9:40-11:30 AM: Breakfast
+- 1:00-2:00 PM: Lunch
+- 2:00-5:30 PM: Free time
+- 5:30-6:30 PM: Optional walk
+- 7:00-8:30 PM: Dinner
+- 8:30-10:00 PM: Casual hang
+- 10:30 PM: Quiet hours
+
+**Saturday April 11** (MDM House)
+- 8:30-9:30 AM: Breakfast
+- 9:30-10:30 AM: House orientation
+- 10:30 AM-12:30 PM: Work/build
+- 12:30-1:30 PM: Lunch
+- 1:30-3:30 PM: Founder Orientation Sessions
+- 3:30-6:00 PM: Neighborhood walk
+- 6:30-8:00 PM: Dinner
+- 8:00 PM onwards: Optional night out
+
+**Sunday April 12** (MDM House)
+- 8:30-9:30 AM: Breakfast
+- 9:30-11:30 AM: Work/build
+- 12:00-1:00 PM: Lunch
+- 1:00-3:00 PM: Founder Orientation Sessions
+- 3:00-6:00 PM: Outdoor block
+- 6:30-8:00 PM: Dinner
+- 8:00-9:30 PM: Founder hang
+
+**Wednesday April 15** (MDM House)
+Work/build day. Breakfast, lunch, dinner provided.
+
+**Thursday April 16** (EF Office)
+Standup, check-ins, cofounder matching round 2, work/build.
+
+**Friday April 17** (EF Office)
+Standup, work/build all day.
+
+**Saturday April 18 - The Bridge Offsite**
+Location: Stinson Beach, CA
+8:30 AM - 3:00 PM
+
+---
+
+## 21. PROGRAM TALKS & LEARNING RESOURCES
+
+Most talks happen in Weeks 1 and 2, then become occasional from Week 3 onwards. Written material and slides are shared as pre-reads before each talk. Speakers include founders, operators, Tier 1 investors, and domain experts.
+
+---
+
+## 22. RECOMMENDED READING & CONTENT
+
+### Ideation & Team Formation
+- "Future Founders, Here's How to Spot and Build in Nonobvious Markets" (First Round Review)
+- "Choose Good Quests" (Founders Fund)
+- "Competition is for Losers" — Peter Thiel (How to Start a Startup)
+- "The Founding Career Path" — Alice Bentinck
+- "Optionality is a mind virus" (99d Substack)
+
+### Customer Discovery & MVP
 - "The Mom Test" by Rob Fitzpatrick — how to talk to customers
-- "What TAM should actually tell you" — https://wquist.com/p/what-tam-should-actually-tell-you
+- "What TAM should actually tell you" (wquist.com)
 
-Product & PMF:
-- "How Superhuman Built an Engine to Find Product/Market Fit" (First Round Review) — https://review.firstround.com/how-superhuman-built-an-engine-to-find-product-market-fit/
-- "The Arc PMF Framework" (Sequoia) — https://sequoiacap.com/article/pmf-framework/
-- "The Arc PMF Terrifying Questions Framework" (Sequoia) — https://sequoiacap.com/article/pmf-framework-2/
-- "Building AI Products In The Probabilistic Era" — https://giansegato.com/essays/probabilistic-era
+### Product & PMF
+- "How Superhuman Built an Engine to Find Product/Market Fit" (First Round Review)
+- "The Arc PMF Framework" (Sequoia)
+- "Building AI Products In The Probabilistic Era"
 
-Go-to-Market / Revenue:
-- "Pricing the AI Workforce" (NFX) — https://www.nfx.com/post/ai-pricing-innovation
-- "Founding Sales" — The Founder Led Sales Handbook — https://www.foundingsales.com/
-- "Pricing in the AI Era" (Sequoia podcast with Manny Medina) — https://sequoiacap.com/podcast/pricing-in-the-ai-era-from-inputs-to-outcomes-with-paid-ceo-manny-medina/
+### Go-to-Market / Revenue
+- "Pricing the AI Workforce" (NFX)
+- "Founding Sales" — The Founder Led Sales Handbook
+- "Pricing in the AI Era" (Sequoia podcast with Manny Medina)
 
-Fundraising:
-- "Startups are just stories about the future" (99d) — https://99d.substack.com/p/stories-about-the-future
-- "Startups are Risk Bundles" (Coding VC) — https://www.codingvc.com/p/startups-are-risk-bundles
-- "Narrative Is the Interface" (99d) — https://99d.substack.com/p/important-narratives-important-companies
+### Fundraising
+- "Startups are just stories about the future" (99d)
+- "Startups are Risk Bundles" (Coding VC)
+- "Narrative Is the Interface" (99d)
 
-Founder Mindset:
-- "How to Work Hard" — Paul Graham — https://paulgraham.com/hwh.html
-- "How to Be More Agentic" (Every) — https://every.to/p/how-to-be-more-agentic
-- "Learn to Love the Moat of Low Status" (Useful Fictions) — https://usefulfictions.substack.com/p/learn-to-love-the-moat-of-low-status
-
----
-
-## 19. PARTNERSHIPS & CREDITS (Available before funding)
-
-### AWS Activate
-- $10,000 in AWS credit valid for 24 months (more credits available post-IC)
-- 1 year Premium Business Support (up to $1,500 value)
-- 80 credits for online training modules
-- How to redeem: Visit https://aws.amazon.com/startups/credits
-- Organisation ID (case sensitive): 6X7ED
-- Important: Apply using a proper domain URL and matching email domain (AWS anti-fraud system auto-rejects mismatches)
-- If you haven't formed a company yet, apply with [YourName].com format
-- AWS bills at end of month — even if credits aren't immediate, use the products and credits will cover once applied
-- Contact for AWS Startup team: Joel Shamash (jshamash@amazon.com)
-
-### Google Cloud Platform
-- Credits starting at $25k USD and up to $250k (based on funding and spend milestones)
-- Technical help including office hours and workshops
-- Access to Startup Success Managers
-- $500 USD Google Cloud Skills Boost credits
-- Google Workspace Business Plus for 1 year (new signups only)
-- Apply at: https://cloud.google.com/startup/apply
-- Make sure to select "Entrepreneur First" in the partner field
-- Questions: cloudprogram@google.com
-
-### Microsoft for Startups
-- Up to $150,000 in free Azure credits
-- $2,500 in OpenAI credits
-- Visual Studio Enterprise and GitHub Enterprise licences
-- Free Microsoft 365, Power Platform, Dynamics 365, LinkedIn licences
-- Apply at: https://startups.microsoft.com
-- Questions: startups@microsoft.com
-
-### OpenAI Partnership
-- All cohort members: $2,500 in OpenAI credits
-- Teams that pass IC: $10,000 in OpenAI credits
-- Credits valid for 2 years
-- Includes onboarding sessions with OpenAI support engineer
-- How to redeem:
-  1. Create OpenAI account at https://platform.openai.com/
-  2. Add payment method at https://platform.openai.com/account/billing/payment-methods
-  3. Submit form: https://docs.google.com/forms/d/e/1FAIpQLSdHNHvpvRvRXCJ81MqtkXb1324D4HGmmxYmjE34OFuLJNfNJA/viewform
-- Note: Cannot redeem if you've already received Microsoft for Startups credits
-- Tip: Apply for Microsoft for Startups first (also gives $2,500 OpenAI credits + Azure + LinkedIn etc.)
-
-### 200+ Global Partners
-- Full list: https://airtable.com/appAFQYnRFRl6HNRD/shrF5RArV8uKlwtQ3/tblzGlpipmUKpED0b
-- New partnerships announced on #ef-partnership-announcements Slack channel
-- To request a partner: https://airtable.com/appAFQYnRFRl6HNRD/shrs2WqAalJHffPKs
+### Founder Mindset
+- "How to Work Hard" — Paul Graham
+- "How to Be More Agentic" (Every)
+- "Learn to Love the Moat of Low Status" (Useful Fictions)
 
 ---
 
-## 20. SF GUIDEBOOK — Mission District
+## 23. HOUSE RULES & COMMUNITY
 
-### Mission Dolores Manor Area
-The Mission District is one of the most vibrant and walkable neighborhoods in SF — full of cafes, restaurants, parks, and cultural landmarks.
+### House expectations:
+- Respect shared spaces
+- Reasonable noise levels
+- Keep it clean
+- Be considerate of other residents
 
-### Cafes (Great for Working)
-- Sightglass Coffee (Mission) — https://sightglasscoffee.com/pages/mission — Beautiful cafe, lots of seating
-- Four Barrel Coffee — https://www.fourbarrelcoffee.com — One of SF's best-known roasters, strong WiFi
-- Ritual Coffee Roasters — https://ritualcoffee.com/pages/mission-district — Reliable coffee, good workspace
-- Grand Coffee Too — https://grandcoffee.com — Small but cozy neighborhood cafe
-- Stable Cafe — https://stablecafe.com — Hidden courtyard workspace, great for quiet sessions
-- The Mill — https://www.themillsf.com — Popular founder work spot
+### Visitors:
+- Visitors may be allowed depending on house policies
+- Day visitors, overnight guests subject to guidelines shared at onboarding
 
-### Mission Burritos (A must-try!)
-- La Taqueria — https://lataqueriasf.com
-- Taqueria Cancun — https://taqueriacancunsf.com
-- El Farolito — famous late-night spot
-
-### Great Restaurants
-- Foreign Cinema — https://foreigncinema.com
-- Tartine Bakery — https://tartinebakery.com
-- Lolo — https://lolosf.com
-- Beretta — https://berettasf.com
-- Flour + Water — https://flourandwater.com
-
-### Bars & Drinks
-- Trick Dog — https://trickdogbar.com — One of the most famous cocktail bars in the world
-- ABV — https://www.abvsf.com — Excellent cocktails and food
-- Zeitgeist — https://zeitgeistsf.com — Classic Mission outdoor beer garden
-- True Laurel — https://truelaurelsf.com — Modern cocktail bar from the Lazy Bear team
-
-### Parks & Outdoor Spaces
-- Mission Dolores Park — The neighborhood's central park and social hub. Soccer, basketball, tennis courts. Incredible skyline views. Unofficial founder hangout spot.
-- Garfield Square — Nearby park with soccer field
-- Potrero del Sol Park
-- In Chan Kaajal Park
-
-### Sports & Recreation
-- Basketball: Mission Dolores Park Courts
-- Soccer: Garfield Square Soccer Field
-- Running Routes: Dolores Park to Valencia Street to Mission District loops
-
-### Getting Around
-- Bike Share (Bay Wheels): https://www.lyft.com/bikes/bay-wheels — Stations at 16th St Mission BART, Valencia & 16th, Dolores Park
-- BART: 16th St Mission Station and 24th St Mission Station — connects to Downtown SF, Oakland/Berkeley, SFO Airport
-- MUNI Metro: Church St & 18th St (J Church Line)
-- Pro tip: Biking is often faster than driving in SF
-
-### Gyms
-- Live Fit Gym (Mission) — https://livefitgym.com — 8 SF locations, $107/month premium membership
-
-### Best Hikes in SF
-- Twin Peaks — Panoramic city views
-- Lands End — Coastal trail with Golden Gate Bridge views
-- Mount Sutro Trails — Forest trails in the city
-- Presidio Trails — Former military base, beautiful nature
-
-### Explore the Mission
-- Valencia Street — Boutiques, cafes, bars, bookstores
-- Mission Street — Classic taquerias and cultural spots
-- Balmy Alley — https://www.precitaeyes.org/balmy-alley — Famous street mural alley
-
-### Pro Tips
-- Dolores Park is the unofficial founder hangout spot
-- Biking is often faster than driving in SF
-- The Mission is one of the best food neighborhoods in the US
-- Walk everywhere — you'll discover hidden gems daily
+### Community culture built through:
+- Founder dinners (Thursday nights)
+- Group sessions
+- Demo nights
+- Informal collaboration
+- Shared housing experiences
+- Sunday Running Club
 
 ---
 
-## 21. SF ECOSYSTEM & COMMUNITY
-
-### Office Events Calendar
-- Link: https://airtable.com/appVBgAmtUqoLRdco/shruLur2lOGnQJZLh
-- Password: EFEvents2026
-
-### Slack Channels for SF
-- #sanfrancisco
-- #sf-office-updates
-
-### SF Community WhatsApp
-- Community group to meet other folks in the Bay
-- Invite link: https://drive.google.com/file/d/1A4AvN2yhbA4IUuGDruikaZspSJN-EtWJ/view?usp=sharing
-- When you join, intro with: company name, one-liner, and where you're based in the Bay
-
----
-
-## 22. IP & LEGAL
+## 24. IP & LEGAL
 
 - Founders typically own the IP created within their company
 - Specific details depend on the investment and legal structure
-- For legal questions, reach out to the team
+- For legal questions, reach out to the EF team
 
 ---
 
-## 23. AFTER THE BRIDGE
+## 25. AFTER THE BRIDGE
 
-If funded ($250k):
+### If funded ($250k):
 - Stay in SF for 3 more months
-- Build from the San Francisco office
-- Hands-on support from the team
+- Build from EF San Francisco office
+- Hands-on support from the EF team
 - Prepare to raise next round
 - Culminates in Demo Day (pitch to investors)
 
-Fundraising support:
+### EF fundraising support:
 - Investor introductions
 - Pitch development
 - Narrative refinement
 - Fundraising strategy
 - Demo Day exposure
 
-Can founders raise before Demo Day?
+### Can founders raise before Demo Day?
 Generally encouraged to prepare for Demo Day, but exceptional teams may receive earlier investor interest.
 
-Can founders hire during the program?
+### Can founders hire during the program?
 Yes, though most teams stay small during the residency. Hiring typically starts after funding is secured.
 `;
 

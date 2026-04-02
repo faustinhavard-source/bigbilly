@@ -61,13 +61,22 @@ Example:
 ## Key Quick Answers
 
 **"When do I need to arrive?"**
-→ Friday April 10. Program starts Monday April 13.
+→ Arrivals are April 9-11. Some early arrivals Thursday April 9, bulk of cohort Friday April 10, final arrivals Saturday April 11. Program kicks off Monday April 13 at the EF office (501 Folsom St).
 
 **"How do I book my flight?"**
 → Book a round trip to SFO, return before June 14, flexible fare, €600-800 budget. Submit here: [flight form link]. You'll get added to Spendesk for reimbursement up to €800.
 
 **"Where will I live?"**
-→ Founder houses in SF. Mission Dolores Manor (MDM) is the main hub. Men's and women's houses. Everything's provided — bed, WiFi, kitchen, laundry.
+→ Founder houses in SF. Mission Dolores Manor (MDM) at 822 S. Van Ness Ave is the main hub. Men's and women's houses. Everything's provided — bed, WiFi, kitchen, laundry.
+
+**"Where is the office?"**
+→ EF San Francisco office at 501 Folsom St. KOD and some sessions happen there.
+
+**"What's the first week like?"**
+→ April 10-12: arrivals, settle in, orientation, get to know the cohort. April 13-14: Kick-off Days at the office (talks on ideation, markets, cofounders, customers + Cofounder Carousel). April 15-17: work/build + check-ins + cofounder matching round 2. April 18: The Bridge Offsite at Stinson Beach (don't book anything that day).
+
+**"What happens each week during the program?"**
+→ Monday morning standup at the house (5 min per team). Weekly team check-ins (30 min). Individual check-ins every 2 weeks. Tactical workshops on request. Optional Sunday run. Most talks happen weeks 1-2, then it's build mode.
 
 **"What do I need to bring?"**
 → Just the basics: toiletries, personal towels/sheets, small personal items. We got the rest covered.
@@ -99,8 +108,11 @@ Example:
 **"What should I read before the program?"**
 → Great list in the Wiki! Key recs: "The Mom Test" for customer discovery, Paul Graham's "How to Work Hard", Sequoia's "Arc PMF Framework", and Peter Thiel's "Competition is for Losers." Check the full reading list in the knowledge base.
 
+**"What's IC like?"**
+→ A 30-minute meeting with 2-3 people from the EF team or advisor network. They'll have read your materials beforehand. You go deeper on your company: what you're building, what you've learned, market thinking, team dynamics. After all panels, EF partners make final decisions — your trajectory over the 8 weeks matters too.
+
 **"What happens after the 8 weeks?"**
-→ Funded teams ($250k) stay in SF for 3 more months, build from the EF office, get hands-on support, and prep for Demo Day where you pitch to investors. If not funded, you can continue independently, seek external funding, or reapply.
+→ Funded teams ($250k) move into the EF Launch program — stay in SF for 3 more months, build from the EF office, get hands-on support, and prep for Demo Day where you pitch to investors. If not funded, you can continue independently, seek external funding, or reapply.
 
 **"Can I bring my own idea?"**
 → Yes! But be ready to validate it fast and stay open to pivots. Many companies change direction during the program. That's the whole point.
@@ -113,5 +125,5 @@ Example:
 
 ---
 
-*Knowledge base version: March 26, 2026*
-*Source: Notion workspace — The Bridge Spring26 Wiki, Internal FAQ, Programme Kit, Reimbursement Policies, KOD Prep, Content by Stage*
+*Knowledge base version: April 2, 2026*
+*Source: Notion workspace — The Bridge Spring26 Wiki (WIP), Internal FAQ, Programme Kit, Reimbursement Policies, KOD Prep, Content by Stage, SF Ecosystem, Perks, Tooling & Comms*

@@ -62,23 +62,15 @@ Profiles we look for:
 | Before March 31 | Complete Pre-Bridge Checklist (founder profile, flight info, calendar) |
 | March 31 | AMA with Alice Bentinck (CEO) — 6:30pm CEST / 4:30pm GMT / 9:30am PDT |
 | April 2 | US Immigration Talk & Q&A with Monica — 4:00pm CEST / 2:00pm GMT / 7:00am PDT |
-| April 10-12 | Arrivals in San Francisco |
-| April 13 | Kick-off Day (KOD) |
+| April 9-11 | Arrivals (some early on April 9, bulk on April 10, final on April 11) |
+| April 13-14 | Kick-off Days (TWO days) |
+| April 18 | The Bridge Offsite at Stinson Beach (8:30am-3:00pm) |
 | Week 1-2 | Exploration and co-founder matching |
 | Week 3-4 | Early idea validation and user conversations |
 | Week 5-6 | Product iteration and deeper market exploration |
 | Week 7 | Preparing for Investment Committee |
 | Week 8 | Investment Committee pitches |
-
-### Kick-off Day Schedule (April 13)
-- 9:00am — Welcome breakfast/brunch
-- 10:00am — The Bridge Introduction (Alice & Charlie)
-- 11:00am — Founders Roaster (1-minute from everyone)
-- 12:00pm — Cohort & Team Lunch
-- 2:00pm — Carousels (co-founder matching)
-- 4:00pm — Fireside chat with EF alum
-- 5:00pm — Team formation ceremony
-- 5:30pm — KOD wrap-up
+| Week of June 9 | IC week |
 
 ---
 
@@ -95,7 +87,7 @@ Profiles we look for:
    - #spring26-the-bridge (general comms)
    - #spring26-the-bridge-announcements (announcements)
    - #spring26-the-bridge-team-formations (team updates)
-3. **WhatsApp Group** — Link coming soon
+3. **WhatsApp Group** — https://chat.whatsapp.com/LIJnR9Z3h9uCWGkhhWlDMP?mode=gi_t
 
 ---
 
@@ -164,7 +156,14 @@ Profiles we look for:
 
 ---
 
-## 8. PERKS
+## 8. KEY LOCATIONS
+
+- **MDM House**: 822 S. Van Ness Ave, San Francisco, CA — https://maps.app.goo.gl/jNHde4iQeJuAXUn78
+- **EF Office**: 501 Folsom St, San Francisco, CA — https://maps.app.goo.gl/ms6BrbmBW7k34oMn9
+
+---
+
+## 9. PERKS
 
 ### Gym Access
 - Partnership with **Live Fit Gym** (8 SF locations)
@@ -182,27 +181,55 @@ Profiles we look for:
 
 ---
 
-## 9. WEEKLY SCHEDULE & RITUALS
+## 10. WEEKLY SCHEDULE & RITUALS
 
-| Day | Activity |
-|-----|----------|
-| Monday | **Monday Signal** (12-2pm): Weekly intent, lightning updates, 45-min talk |
-| Tuesday | **Workshops** (12-2pm): Specific topics (GTM, PMF, etc.), everyone speaks |
-| Wednesday | **EiR Day**: Full-day, 45min-1hr per team with Entrepreneur in Residence |
-| Thursday | **The Bridge Dinner** (6-9pm): Founder guest from SF + bi-monthly demos |
-| Friday | **EiR or Weekly Progress Debrief** (morning) |
-| Sunday | **Weekly Run Day** (Sunday Running Club) |
+### Weekly cadence:
 
-### Regular check-ins:
-- **Team check-ins**: 30 min/week/team with EF team member or EiR
-- **Individual check-ins**: 30 min every 2 weeks with a TI (Talent Investor)
-- **EiR check-in**: 30 min/week/team
-- **Accountability**: 1x every 2 weeks (2h) — group pitches/demos
-- **1:1 workshops**: Tactical office hours, ad-hoc
+**Monday Morning Standup** (at the house)
+Coffee, breakfast, and short updates from each team. Each team gets 5 minutes:
+- What you're working on (two sentences)
+- Your goal by IC
+- The best thing you shipped last week
+- The most important thing you learned about your customer last week
+- The most important tech unlock you had last week (if any)
+
+**Team Check-ins** (once per week, 30 min)
+Assigned weekly slot, typically midweek (Tue-Thu). Focus on:
+- What's working and what's not
+- Clarifying priorities for the week
+- Making sure you're not stuck on something that doesn't matter
+
+**Individual Check-ins** (every 2 weeks, 30 min)
+Focus on: market fit, cofounder dynamics, individual strengths, what to improve.
+
+**Tactical Workshops** (ad hoc, on request)
+Examples: customer discovery feedback, outreach message workshopping, product demo rewrite, market framing sessions.
+
+**Optional Sunday Run**
+Weekly, founder-led Sunday morning run through SF hills.
 
 ---
 
-## 10. CO-FOUNDER MATCHING & TEAMS
+## 11. PROGRAM STRUCTURE: WEEK-BY-WEEK FOCUS
+
+**Pre-program weekend (April 9-11)**
+Arrive, settle into the house, get oriented, get over jet lag. Meet everyone, talk about what you might want to build and who you might want to build with.
+
+**Week 1 (learn about the foundations)**
+First two days are Kick-off Days at the office. Covers ideation frameworks, markets, cofounders. By end of week 1, if you didn't arrive in a team, you should have formed a first one with an initial direction. Includes Offsite on Saturday April 18.
+
+**Week 2 (learn how to execute)**
+Focus on operational effectiveness: customer discovery, outreach, selling, pitching, distinguishing real traction from fake. Ideally by end of week 2: set on a team, a market, and a problem space.
+
+**Weeks 3-7 (build mode)**
+Calendar should look like a founder's calendar: talking to customers, building, iterating, shipping. The Bridge team stays close through check-ins and tactical workshops.
+
+**Week 8 (IC prep + Investment Committee)**
+Translating progress into a concise, credible story. Dedicated sessions on fundraising mindset and IC preparation.
+
+---
+
+## 12. CO-FOUNDER MATCHING & TEAMS
 
 - Co-founder relationships emerge through informal interactions, structured sessions, collaborative projects
 - Founders are encouraged to experiment before committing
@@ -213,7 +240,7 @@ Profiles we look for:
 
 ---
 
-## 11. INVESTMENT COMMITTEE
+## 13. INVESTMENT COMMITTEE
 
 ### What IC looks for:
 - Strength of the founding team
@@ -221,6 +248,18 @@ Profiles we look for:
 - Market size
 - Evidence of speed and execution
 - Early signals of user demand
+
+### What IC actually is:
+- 30-minute meeting with 2-3 people from the EF team or advisor network
+- They will have read/watched your materials beforehand
+- Time is used to go deeper: what you're building, what you've learned, how you think about the market, team dynamics
+- After all panels, EF partners meet for final decisions
+- Your panel is one input; your trajectory over the 8 weeks is also considered
+
+### What happens if funded:
+- Top teams receive $250k from EF
+- Move from The Bridge (Form phase) into EF Launch program
+- Build towards Demo Day and first round of institutional investment
 
 ### If not funded:
 - Continue building independently
@@ -230,7 +269,7 @@ Profiles we look for:
 
 ---
 
-## 12. VISA & IMMIGRATION
+## 14. VISA & IMMIGRATION
 
 - EF team helps guide founders through the visa process
 - Visa paperwork begins after acceptance
@@ -241,19 +280,19 @@ Profiles we look for:
 
 ---
 
-## 13. COMMUNICATION CHANNELS
+## 15. COMMUNICATION CHANNELS
 
 - **Email**: spring26-thebridge@joinef.com
 - **Slack channels**:
   - #spring26-the-bridge (general)
   - #spring26-the-bridge-announcements
   - #spring26-the-bridge-team-formations
-- **WhatsApp Group**: Link coming soon
+- **WhatsApp Group**: https://chat.whatsapp.com/LIJnR9Z3h9uCWGkhhWlDMP?mode=gi_t
 - **Wiki**: https://entrepreneursfirst.notion.site/WIP-The-Bridge-SPRING26-WIKI-325e26adb8c980478b9fd89e951c3baf
 
 ---
 
-## 14. PROGRAM COST
+## 16. PROGRAM COST
 
 **Nothing.** EF covers:
 - Housing
@@ -263,7 +302,7 @@ Profiles we look for:
 
 ---
 
-## 15. CULTURE & EXPECTATIONS
+## 17. CULTURE & EXPECTATIONS
 
 - Full-time commitment — evenings and weekends often involve work
 - Successful founders are: extremely driven, fast learners, collaborative, comfortable with ambiguity, obsessed with building
@@ -274,43 +313,87 @@ Profiles we look for:
 
 ---
 
-## 16. TOOLING
+## 18. TOOLING
 
 - **Founder Dashboard**: https://airtable.com/appQQph3BFJyL9teo/shre7AVRTheX74WCY (Password: WelcometoTheBridge)
 - **Team Dashboard**: https://airtable.com/appQQph3BFJyL9teo/shrux9MNEeBPUfEvA (Password: WelcometoTheBridge)
 - **Team Formation Form**: https://airtable.com/appQQph3BFJyL9teo/pagrRDJwQD2EZg99L/form
 - **Dashboard Signup**: https://airtable.com/appQQph3BFJyL9teo/pagc8eb86mMx9RluS/form
+- **Break up / pivot form**: Coming soon
+- **Pocket letter form**: https://airtable.com/appVOkfxMJIjwVZcj/pag5FFGW6TAJYDec1/form
 
 ---
 
-## 17. KICK-OFF DAY (KOD) PREPARATION
+## 19. KICK-OFF DAYS (KOD)
 
-### 3 goals for KOD:
-1. Leave with a list of **5 potential co-founders** you want to explore working with
-2. Know how to **evaluate a potential co-founder**
-3. Know what your **edge** is
+**Day 1 - Monday April 13 (at EF Office)**
+- 9:00-10:00 — Breakfast + expectation setting
+- 10:15-11:15 — Talk: Ideation frameworks
+- 11:30-12:30 — Talk: Markets
+- 12:30-2:00 — Cohort lunch
+- 2:00-3:00 — Talk: Cofounders
+- 3:00-6:00 — Cofounder Carousel
 
-### Cohort Introductions (1 minute each)
-You'll pitch yourself to the full cohort. Prep this in advance. Cover:
-- Your name
-- Your edge (what makes you unique)
-- Most exciting thing you've previously worked on
-- What you want to work on at The Bridge (industry, product, etc.)
-- Why should people work with you? (what makes you an outlier)
-
-Tips: Be memorable, punchy, and clear. Avoid being generic, waffly, or humble.
-
-### Co-Founder Carousel (2.5 minutes per person)
-Speed-dating for co-founders. You'll rotate through short conversations. Cover:
-- Your name
-- Most exciting thing you've previously worked on
-- Your most counterintuitive belief about how the world will be different in 5 years
-
-Tips: Have your pitch ready, take notes, watch the clock. Don't forget who you've spoken to!
+**Day 2 - Tuesday April 14 (at EF Office)**
+- 9:00-10:00 — Talk: Customers
+- 10:15-11:15 — Talk: Customer discovery
+- 11:30-12:30 — Talk: Outreach
 
 ---
 
-## 18. RECOMMENDED READING & CONTENT
+## 20. FIRST WEEK DETAILED SCHEDULE
+
+**Friday April 10 - Arrival Day** (MDM House)
+- 8:00 AM-12:00 PM: Arrivals + check-in
+- 9:40-11:30 AM: Breakfast
+- 1:00-2:00 PM: Lunch
+- 2:00-5:30 PM: Free time
+- 5:30-6:30 PM: Optional walk
+- 7:00-8:30 PM: Dinner
+- 8:30-10:00 PM: Casual hang
+- 10:30 PM: Quiet hours
+
+**Saturday April 11** (MDM House)
+- 8:30-9:30 AM: Breakfast
+- 9:30-10:30 AM: House orientation
+- 10:30 AM-12:30 PM: Work/build
+- 12:30-1:30 PM: Lunch
+- 1:30-3:30 PM: Founder Orientation Sessions
+- 3:30-6:00 PM: Neighborhood walk
+- 6:30-8:00 PM: Dinner
+- 8:00 PM onwards: Optional night out
+
+**Sunday April 12** (MDM House)
+- 8:30-9:30 AM: Breakfast
+- 9:30-11:30 AM: Work/build
+- 12:00-1:00 PM: Lunch
+- 1:00-3:00 PM: Founder Orientation Sessions
+- 3:00-6:00 PM: Outdoor block
+- 6:30-8:00 PM: Dinner
+- 8:00-9:30 PM: Founder hang
+
+**Wednesday April 15** (MDM House)
+Work/build day. Breakfast, lunch, dinner provided.
+
+**Thursday April 16** (EF Office)
+Standup, check-ins, cofounder matching round 2, work/build.
+
+**Friday April 17** (EF Office)
+Standup, work/build all day.
+
+**Saturday April 18 - The Bridge Offsite**
+Location: Stinson Beach, CA
+8:30 AM - 3:00 PM
+
+---
+
+## 21. PROGRAM TALKS & LEARNING RESOURCES
+
+Most talks happen in Weeks 1 and 2, then become occasional from Week 3 onwards. Written material and slides are shared as pre-reads before each talk. Speakers include founders, operators, Tier 1 investors, and domain experts.
+
+---
+
+## 22. RECOMMENDED READING & CONTENT
 
 ### Ideation & Team Formation
 - "Future Founders, Here's How to Spot and Build in Nonobvious Markets" (First Round Review)
@@ -345,7 +428,7 @@ Tips: Have your pitch ready, take notes, watch the clock. Don't forget who you'v
 
 ---
 
-## 19. HOUSE RULES & COMMUNITY
+## 23. HOUSE RULES & COMMUNITY
 
 ### House expectations:
 - Respect shared spaces
@@ -367,7 +450,7 @@ Tips: Have your pitch ready, take notes, watch the clock. Don't forget who you'v
 
 ---
 
-## 20. IP & LEGAL
+## 24. IP & LEGAL
 
 - Founders typically own the IP created within their company
 - Specific details depend on the investment and legal structure
@@ -375,7 +458,7 @@ Tips: Have your pitch ready, take notes, watch the clock. Don't forget who you'v
 
 ---
 
-## 21. AFTER THE BRIDGE
+## 25. AFTER THE BRIDGE
 
 ### If funded ($250k):
 - Stay in SF for 3 more months
@@ -396,3 +479,7 @@ Generally encouraged to prepare for Demo Day, but exceptional teams may receive 
 
 ### Can founders hire during the program?
 Yes, though most teams stay small during the residency. Hiring typically starts after funding is secured.
+
+---
+
+**Last updated: April 2, 2026**
